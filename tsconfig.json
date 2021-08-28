@@ -1,22 +1,38 @@
 {
   "compilerOptions": {
+    // 编译转换目标代码 (ts => es5/6/7)
     "target": "esnext",
+    // 使用的模块化方案 (commonjs => require module.exports ; es module =>  import export)
+    // 多模块化方案  umd
     "module": "esnext",
+    // 严格模式
     "strict": true,
+    // 对jsx进行处理
     "jsx": "preserve",
+    // 辅助导入功能
     "importHelpers": true,
+    // 按照node环境去解析模块 import './index.node'
     "moduleResolution": "node",
+    // 跳过一些库的类型检查 用于防止第三方库声明了重名类型引起冲突(axios => 类型 /lodash => @types/lodash  ...其它第三方库)
     "skipLibCheck": true,
+    // es module and common js 可同时使用
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    // 生成映射文件(ts => js)
     "sourceMap": true,
+    // 文件基础解析路径
     "baseUrl": ".",
+    // 指定具体要解析使用的类型
     "types": ["webpack-env"],
+    // 路径解析  快捷路径  @/*.vue = src/*.vue 类似 webpack alias
     "paths": {
       "@/*": ["src/*"]
     },
+    // 指定项目中可使用那些库的类型
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  // 包含项 进行编辑代码解析 使用ts.config进行格式校验
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
+  // 排除项
   "exclude": ["node_modules"]
 }
