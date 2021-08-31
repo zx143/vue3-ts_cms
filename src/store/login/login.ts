@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-08-03 21:57:25
  * @LastEditors: zgq
- * @LastEditTime: 2021-08-28 10:39:59
+ * @LastEditTime: 2021-08-30 22:08:35
  */
 
 import { Module } from 'vuex'
@@ -54,7 +54,7 @@ const loginModule: Module<ILoginState, IRootState> = {
       cacheLocal.setCache('userInfo', userInfo)
 
       // 获取用户菜单列表
-      const resultUserMenus = await getUserMenus(id)
+      const resultUserMenus = await getUserMenus(userInfo.role.id)
       const userMenus = resultUserMenus.data
       console.log('userMenus', userMenus)
       commit('setUserMenus', userMenus)

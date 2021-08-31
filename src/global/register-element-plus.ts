@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-29 07:31:47
  * @LastEditors: zgq
- * @LastEditTime: 2021-08-02 07:42:21
+ * @LastEditTime: 2021-08-30 21:35:22
  */
 
 import { App } from 'vue'
@@ -21,7 +21,13 @@ import {
   ElInput,
   ElCheckbox,
   ElLink,
-  ElMessage
+  ElMessage,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElMenu,
+  ElSubmenu,
+  ElMenuItem
 } from 'element-plus'
 
 const components = [
@@ -36,7 +42,13 @@ const components = [
   ElInput,
   ElCheckbox,
   ElLink,
-  ElMessage
+  ElMessage,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElMenu,
+  ElSubmenu,
+  ElMenuItem
 ]
 
 export default function (app: App): void {

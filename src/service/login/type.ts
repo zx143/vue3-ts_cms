@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-08-06 08:02:10
  * @LastEditors: zgq
- * @LastEditTime: 2021-08-15 21:56:12
+ * @LastEditTime: 2021-08-30 22:08:33
  */
 
 export interface IAccount {
@@ -36,5 +36,5 @@ export interface IUserInfo {
   cellphone?: number
   department?: IUserInfo
   realname?: string
-  role?: IUserInfo & IRole
+  role: IUserInfo & IRole
 }

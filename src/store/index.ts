@@ -3,10 +3,10 @@
  * @Author: zgq
  * @Date: 2021-07-24 17:11:36
  * @LastEditors: zgq
- * @LastEditTime: 2021-08-28 10:26:54
+ * @LastEditTime: 2021-08-30 21:15:15
  */
-import { createStore } from 'vuex'
-import type { IRootState } from './types'
+import { createStore, Store, useStore as useVuexStore } from 'vuex'
+import type { IRootState, IRootUseStoreType } from './types'
 import login from './login/login'
 
 const store = createStore<IRootState>({
@@ -32,6 +32,11 @@ const store = createStore<IRootState>({
 
 export function loadSetUpCacheInit() {
   store.dispatch('login/loadCacheInit')
+}
+
+// vuex类型函数
+export function useStore(): Store<IRootUseStoreType> {
+  return useVuexStore()
 }
 
 export default store
