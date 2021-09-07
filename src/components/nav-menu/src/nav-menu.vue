@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-08-30 20:26:37
  * @LastEditors: zgq
- * @LastEditTime: 2021-08-31 20:58:36
+ * @LastEditTime: 2021-09-05 20:38:57
 -->
 <template>
   <div class="nav-menu">
@@ -30,7 +30,7 @@
             </template>
             <template v-for="subItem in item.children" :key="subItem.id">
               <!-- 二级子菜单项 -->
-              <el-menu-item>
+              <el-menu-item :index="subItem.id + ''" @click="toItemRoutePage(subItem)">
                 <i v-if="subItem.icon" :class="subItem.icon"></i>
                 <span>{{ subItem.name }}</span>
               </el-menu-item>
@@ -52,6 +52,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   props: {
@@ -62,10 +63,17 @@ export default defineComponent({
   },
   setup() {
     const store = useStore()
+    const router = useRouter()
     const userMenus = computed(() => store.state.login.userMenus)
-    console.log('userMenus', userMenus.value)
+    const toItemRoutePage = (itemRoute: any) => {
+      router.push({
+        path: itemRoute.url ?? '/not-found'
+      })
+    }
+    // console.log('userMenus', userMenus.value)
     return {
-      userMenus
+      userMenus,
+      toItemRoutePage
     }
   }
 })

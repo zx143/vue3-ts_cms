@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-08-03 21:57:25
  * @LastEditors: zgq
- * @LastEditTime: 2021-08-30 22:08:35
+ * @LastEditTime: 2021-09-05 20:37:38
  */
 
 import { Module } from 'vuex'
@@ -13,6 +13,7 @@ import type { IAccount } from '@/service/login/type'
 import { accountLoginRequest, accountUserInfo, getUserMenus } from '@/service/login/login'
 import cacheLocal from '@/utils/cache'
 import router from '@/router'
+import { mapMenuToRoutes } from '@/utils/map-routers'
 
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -33,6 +34,11 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     setUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+
+      // 根据用户权限获取动态路由
+      const menuRoutes = mapMenuToRoutes(userMenus)
+
+      menuRoutes.forEach((x) => router.addRoute('main', x))
     }
   },
 

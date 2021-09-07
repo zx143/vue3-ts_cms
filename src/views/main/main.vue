@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-24 16:45:35
  * @LastEditors: zgq
- * @LastEditTime: 2021-08-31 20:55:41
+ * @LastEditTime: 2021-09-06 21:09:14
 -->
 <template>
   <div class="main">
@@ -15,7 +15,11 @@
         <el-header class="page-header">
           <nav-header @menuFoldChange="menuFoldChange" />
         </el-header>
-        <el-main class="page-content">Main</el-main>
+        <el-main class="page-content">
+          <div class="main-container">
+            <router-view></router-view>
+          </div>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -60,6 +64,10 @@ export default defineComponent({
 .main-content,
 .page {
   height: 100%;
+}
+
+.main-container {
+  background-color: #fff;
 }
 
 .page-content {

@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-29 07:31:47
  * @LastEditors: zgq
- * @LastEditTime: 2021-08-30 21:35:22
+ * @LastEditTime: 2021-09-06 21:20:34
  */
 
 import { App } from 'vue'
@@ -27,7 +27,16 @@ import {
   ElMain,
   ElMenu,
   ElSubmenu,
-  ElMenuItem
+  ElMenuItem,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
+  ElAvatar,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker
 } from 'element-plus'
 
 const components = [
@@ -48,7 +57,16 @@ const components = [
   ElMain,
   ElMenu,
   ElSubmenu,
-  ElMenuItem
+  ElMenuItem,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
+  ElAvatar,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker
 ]
 
 export default function (app: App): void {
