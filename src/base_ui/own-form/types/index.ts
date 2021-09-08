@@ -2,8 +2,8 @@
  * @Description:
  * @Author: zgq
  * @Date: 2021-09-06 21:46:55
- * @LastEditors: zgq
- * @LastEditTime: 2021-09-07 21:50:41
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-09-08 22:11:34
  */
 
 type TFormType =
@@ -11,7 +11,7 @@ type TFormType =
   | 'password'
   | 'inputNumber'
   | 'select'
-  | 'datePicker'
+  | 'datepicker'
   | 'checkbox'
   | 'radio'
   | 'switch'
@@ -22,7 +22,7 @@ export enum formItemEnum {
   PASSWORD = 'password',
   INPUT_NUMBER = 'inputNumber',
   SELECT = 'select',
-  DATE_PICKER = 'datePicker',
+  DATEPICKER = 'datepicker',
   CHECKBOX = 'checkbox',
   RADIO = 'radio',
   SWITCH = 'switch',
@@ -34,6 +34,10 @@ interface option {
   value: string | number
 }
 
+interface anyObj<T = any> {
+  [key: string]: T
+}
+
 export interface IFormItem {
   type: TFormType
   label: string
@@ -42,4 +46,12 @@ export interface IFormItem {
   checked?: boolean
   rules?: any[]
   placeHolder?: string
+  otherOptions?: anyObj
+}
+
+export interface IForm {
+  formItems: IFormItem[]
+  colLayout: anyObj<number>
+  itemStyle: anyObj<string>
+  labelWidth: string
 }
