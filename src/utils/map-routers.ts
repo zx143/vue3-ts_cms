@@ -4,14 +4,20 @@ import { RouteRecordRaw } from 'vue-router'
  * @Description:
  * @Author: zgq
  * @Date: 2021-09-02 20:43:59
- * @LastEditors: zgq
- * @LastEditTime: 2021-09-05 20:29:27
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-09-09 21:48:38
  */
+
+let defaultFirstMenuRoute: any = null
+
 const deepDiffRoute = (userMenus: any[], allRoutes: any[], rs: any[] = []): any[] => {
   for (const menu of userMenus) {
     if (menu.type === 2) {
       const route = allRoutes.find((r) => r.path === menu.url)
-      if (route) rs.push(route)
+      if (route) {
+        if (!defaultFirstMenuRoute) defaultFirstMenuRoute = route
+        rs.push(route)
+      }
     } else {
       if (menu.children) deepDiffRoute(menu.children, allRoutes, rs)
     }
@@ -36,3 +42,25 @@ export function mapMenuToRoutes(userMenus: any[]): RouteRecordRaw[] {
   // console.log('menuRoutes', menuRoutes )
   return menuRoutes
 }
+
+/**
+ *
+ * 获取当前url路由对应的菜单信息
+ * @export
+ * @param {any[]} userMenus
+ * @param {string} currentRoute
+ * @return {*}  {*}
+ */
+export function getActiveMenu(userMenus: any[], currentRoute: string): any {
+  for (const menu of userMenus) {
+    if (menu.type === 1) {
+      // 递归遍历children
+      const rs = getActiveMenu(menu.children ?? [], currentRoute)
+      if (rs) return rs
+    } else if (menu.type === 2 && menu.url === currentRoute) {
+      return menu
+    }
+  }
+}
+
+export { defaultFirstMenuRoute }

@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-09-08 21:41:24
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-08 22:14:57
+ * @LastEditTime: 2021-09-09 21:47:25
  */
 import { IForm } from '@/base_ui/own-form'
 export const searchFormConfig: IForm = {
@@ -28,6 +28,7 @@ export const searchFormConfig: IForm = {
     },
     {
       type: 'select',
+      value: '',
       label: '爱好',
       options: [
         { label: '吃饭', value: '0' },

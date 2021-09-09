@@ -2,8 +2,8 @@
  * @Description:
  * @Author: zgq
  * @Date: 2021-08-30 20:26:37
- * @LastEditors: zgq
- * @LastEditTime: 2021-09-05 20:38:57
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-09-09 21:55:09
 -->
 <template>
   <div class="nav-menu">
@@ -12,7 +12,7 @@
       <span v-if="!collapse" class="title">vue3_TS</span>
     </div>
     <el-menu
-      default-active="2"
+      :default-active="selectedMenuIndex"
       class="el-menu-vertical"
       :collapse="collapse"
       background-color="#0c2135"
@@ -50,9 +50,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
 import { useRouter } from 'vue-router'
+import { getActiveMenu } from '@/utils/map-routers'
 
 export default defineComponent({
   props: {
@@ -65,6 +66,13 @@ export default defineComponent({
     const store = useStore()
     const router = useRouter()
     const userMenus = computed(() => store.state.login.userMenus)
+    const currentRoute = router.currentRoute.value.path
+    // 获取当前被选中的菜单
+    const activeMenu = getActiveMenu(userMenus.value, currentRoute)
+    // 选中菜单索引
+    const selectedMenuIndex = ref(activeMenu.id + '')
+    console.info('menulist', activeMenu, selectedMenuIndex)
+
     const toItemRoutePage = (itemRoute: any) => {
       router.push({
         path: itemRoute.url ?? '/not-found'
@@ -73,6 +81,7 @@ export default defineComponent({
     // console.log('userMenus', userMenus.value)
     return {
       userMenus,
+      selectedMenuIndex,
       toItemRoutePage
     }
   }

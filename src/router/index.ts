@@ -2,12 +2,13 @@
  * @Description:
  * @Author: zgq
  * @Date: 2021-07-24 16:51:21
- * @LastEditors: zgq
- * @LastEditTime: 2021-09-02 20:25:35
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-09-09 21:50:49
  */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import cacheLocal from '@/utils/cache'
+import { defaultFirstMenuRoute } from '@/utils/map-routers'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -39,6 +40,11 @@ router.beforeEach((to) => {
   if (to.path !== 'login') {
     const token = cacheLocal.getCache('token')
     if (!token) return 'login'
+  }
+
+  /* 加载main路由, 默认跳转第一个菜单子路由 */
+  if (to.path === '/main') {
+    return defaultFirstMenuRoute.path
   }
 })
 
