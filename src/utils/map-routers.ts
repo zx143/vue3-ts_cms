@@ -1,3 +1,4 @@
+import { IBreadcrumb } from '@/base_ui/nav-breadcrumb'
 import { RouteRecordRaw } from 'vue-router'
 
 /*
@@ -5,7 +6,7 @@ import { RouteRecordRaw } from 'vue-router'
  * @Author: zgq
  * @Date: 2021-09-02 20:43:59
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-09 21:48:38
+ * @LastEditTime: 2021-09-10 22:05:14
  */
 
 let defaultFirstMenuRoute: any = null
@@ -51,16 +52,30 @@ export function mapMenuToRoutes(userMenus: any[]): RouteRecordRaw[] {
  * @param {string} currentRoute
  * @return {*}  {*}
  */
-export function getActiveMenu(userMenus: any[], currentRoute: string): any {
+export function getActiveMenu(
+  userMenus: any[],
+  currentRoute: string,
+  breadcrumbs?: IBreadcrumb[]
+): any {
   for (const menu of userMenus) {
     if (menu.type === 1) {
       // 递归遍历children
       const rs = getActiveMenu(menu.children ?? [], currentRoute)
-      if (rs) return rs
+      if (rs) {
+        breadcrumbs?.push({ name: menu.name })
+        breadcrumbs?.push({ name: rs.name })
+        return rs
+      }
     } else if (menu.type === 2 && menu.url === currentRoute) {
       return menu
     }
   }
+}
+/* 获取对应菜单的面包屑 */
+export function getActiveBreadcrumb(userMenus: any[], currentRoute: string) {
+  const breadcrumbs: IBreadcrumb[] = []
+  getActiveMenu(userMenus, currentRoute, breadcrumbs)
+  return breadcrumbs
 }
 
 export { defaultFirstMenuRoute }
