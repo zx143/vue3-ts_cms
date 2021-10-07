@@ -3,32 +3,32 @@
  * @Author: zgq
  * @Date: 2021-09-08 21:41:24
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-09 21:47:25
+ * @LastEditTime: 2021-10-07 21:03:11
  */
 import { IForm } from '@/base_ui/own-form'
 export const searchFormConfig: IForm = {
   formItems: [
     {
+      field: 'id',
       type: 'input',
       label: 'id',
-      value: '',
       placeHolder: '请输入id'
     },
     {
+      field: 'name',
       type: 'input',
       label: '用户名',
-      value: '',
       placeHolder: '请输入用户名'
     },
     {
+      field: 'password',
       type: 'password',
       label: '密码',
-      value: '',
       placeHolder: '请输入密码'
     },
     {
+      field: 'sports',
       type: 'select',
-      value: '',
       label: '爱好',
       options: [
         { label: '吃饭', value: '0' },
@@ -38,6 +38,7 @@ export const searchFormConfig: IForm = {
       placeHolder: '请选择爱好'
     },
     {
+      field: 'createTime',
       type: 'datepicker',
       label: '创建时间',
       otherOptions: {

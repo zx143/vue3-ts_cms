@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-09-06 21:46:55
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-08 22:11:34
+ * @LastEditTime: 2021-10-07 20:51:23
  */
 
 type TFormType =
@@ -39,6 +39,7 @@ interface anyObj<T = any> {
 }
 
 export interface IFormItem {
+  field: string
   type: TFormType
   label: string
   value?: string

@@ -2,26 +2,24 @@
  * @Description:
  * @Author: zgq
  * @Date: 2021-09-01 21:19:07
- * @LastEditors: zgq
- * @LastEditTime: 2021-09-08 21:51:10
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-10-08 07:48:16
 -->
 <template>
   <div class="user">
-    <own-form v-bind="searchFormConfig"></own-form>
+    <page-search :searchFormConfig="searchFormConfig" />
     <div class="content"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import OwnForm from '@/base_ui/own-form'
+import PageSearch from '@/components/page-search'
 import { searchFormConfig } from './config/searchForm.config'
 
 export default defineComponent({
   name: 'user',
-  components: {
-    OwnForm
-  },
+  components: { PageSearch },
   setup() {
     return {
       searchFormConfig
