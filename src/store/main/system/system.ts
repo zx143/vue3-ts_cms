@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2021-10-08 20:52:55
- * @LastEditTime: 2021-10-08 21:49:34
+ * @LastEditTime: 2021-10-09 07:30:23
  */
 import { getPageListData } from '@/service/main/system/system'
 import { IRootState } from '@/store/types'
@@ -26,10 +26,10 @@ const systemModule: Module<ISystemState, IRootState> = {
   },
   actions: {
     async getPageListAction({ commit }, paylod: IPageListParams) {
-      console.log('paylod', paylod)
+      // console.log('paylod', paylod)
       // 发送请求
       const result = await getPageListData(paylod.requestUrl, paylod.queryInfo)
-      console.info('result', result)
+      // console.info('result', result)
       const { list, totalCount } = result.data
       commit('setUserCount', totalCount)
       commit('setUserList', list)

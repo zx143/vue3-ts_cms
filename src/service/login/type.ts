@@ -2,8 +2,8 @@
  * @Description:
  * @Author: zgq
  * @Date: 2021-08-06 08:02:10
- * @LastEditors: zgq
- * @LastEditTime: 2021-08-30 22:08:33
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-10-09 06:41:08
  */
 
 export interface IAccount {
@@ -15,11 +15,6 @@ export interface ILoginRs {
   id: number
   name: string
   token: string
-}
-
-export interface IDataType<T = any> {
-  code: number
-  data: T
 }
 
 export interface IRole {

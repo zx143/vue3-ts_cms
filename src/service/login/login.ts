@@ -2,13 +2,14 @@
  * @Description:
  * @Author: zgq
  * @Date: 2021-08-06 08:00:41
- * @LastEditors: zgq
- * @LastEditTime: 2021-08-30 22:07:25
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-10-09 06:41:39
  */
 
 import gqRequest from '../index'
+import { IDataType } from '../types'
 
-import { IAccount, IDataType, ILoginRs, IUserInfo } from './type'
+import { IAccount, ILoginRs, IUserInfo } from './type'
 
 enum loginAPI {
   AccountLogin = '/login',

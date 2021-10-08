@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-29 07:31:47
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-10 21:20:57
+ * @LastEditTime: 2021-10-09 06:59:26
  */
 
 import { App } from 'vue'
@@ -38,7 +38,9 @@ import {
   ElOption,
   ElDatePicker,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn
 } from 'element-plus'
 
 const components = [
@@ -70,7 +72,9 @@ const components = [
   ElOption,
   ElDatePicker,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn
 ]
 
 export default function (app: App): void {

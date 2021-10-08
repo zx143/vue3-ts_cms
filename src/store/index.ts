@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-24 17:11:36
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-08 21:04:49
+ * @LastEditTime: 2021-10-09 06:47:57
  */
 import { createStore, Store, useStore as useVuexStore } from 'vuex'
 import type { IRootState, IRootUseStoreType } from './types'
@@ -19,8 +19,8 @@ const store = createStore<IRootState>({
     }
   },
   mutations: {
-    changeName(state) {
-      state.name
+    changeName(state, name: string) {
+      state.name = name
     }
   },
 
