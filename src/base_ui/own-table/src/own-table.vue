@@ -1,7 +1,7 @@
 <!--
  * @Description:
  * @Date: 2021-10-09 07:22:17
- * @LastEditTime: 2021-10-09 07:48:51
+ * @LastEditTime: 2021-10-10 12:03:53
 -->
 <template>
   <div class="own-table">
@@ -21,11 +21,11 @@
         >
           <!-- 作用域插槽 -->
           <template #default="scope">
-            {{ scope.row[item.prop] }}
+            <!-- todo: 插槽 => 默认展示对应数据, 通过row传递作用域数据 -->
+            <slot :name="item['slotName']" :row="scope.row">{{ scope.row[item.prop] }}</slot>
           </template>
         </el-table-column>
       </template>
-      <slot name="footer"></slot>
     </el-table>
   </div>
 </template>

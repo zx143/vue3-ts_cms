@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-29 07:31:47
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-09 06:59:26
+ * @LastEditTime: 2021-10-10 11:59:04
  */
 
 import { App } from 'vue'
@@ -40,7 +40,8 @@ import {
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElTable,
-  ElTableColumn
+  ElTableColumn,
+  ElTag
 } from 'element-plus'
 
 const components = [
@@ -74,7 +75,8 @@ const components = [
   ElBreadcrumb,
   ElBreadcrumbItem,
   ElTable,
-  ElTableColumn
+  ElTableColumn,
+  ElTag
 ]
 
 export default function (app: App): void {
