@@ -2,21 +2,32 @@
  * @Description:
  * @Author: zgq
  * @Date: 2021-07-24 12:16:14
- * @LastEditors: zgq
- * @LastEditTime: 2021-08-01 15:39:48
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-10-10 20:09:21
 -->
 <template>
   <div class="app">
-    <router-view></router-view>
+    <!-- 国际化转换组件 -->
+    <el-config-provider :locale="locale">
+      <router-view></router-view>
+    </el-config-provider>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
+import { ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 export default defineComponent({
   name: 'App',
-  components: {}
+  components: {
+    ElConfigProvider
+  },
+  setup() {
+    return {
+      locale: zhCn
+    }
+  }
 })
 </script>
 

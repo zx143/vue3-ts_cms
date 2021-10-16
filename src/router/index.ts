@@ -3,12 +3,12 @@
  * @Author: zgq
  * @Date: 2021-07-24 16:51:21
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-09 21:50:49
+ * @LastEditTime: 2021-10-16 20:06:48
  */
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import cacheLocal from '@/utils/cache'
-import { defaultFirstMenuRoute } from '@/utils/map-routers'
+import { defaultFirstMenuRoute } from '@/utils/map-menus'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -36,8 +36,9 @@ const router = createRouter({
   history: createWebHashHistory()
 })
 
-router.beforeEach((to) => {
-  if (to.path !== 'login') {
+router.beforeEach((to, from) => {
+  console.log('form path', from.path)
+  if (to.path !== 'login' && from.path !== '/') {
     const token = cacheLocal.getCache('token')
     if (!token) return 'login'
   }

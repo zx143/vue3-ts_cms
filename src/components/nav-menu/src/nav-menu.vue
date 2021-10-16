@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-08-30 20:26:37
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-10 22:15:48
+ * @LastEditTime: 2021-10-16 20:07:11
 -->
 <template>
   <div class="nav-menu">
@@ -53,7 +53,7 @@
 import { defineComponent, computed, ref } from 'vue'
 import { useStore } from '@/store'
 import { useRouter } from 'vue-router'
-import { getActiveMenu } from '@/utils/map-routers'
+import { getActiveMenu } from '@/utils/map-menus'
 
 export default defineComponent({
   props: {
@@ -71,7 +71,7 @@ export default defineComponent({
     const activeMenu = getActiveMenu(userMenus.value, currentRoute)
     // 选中菜单索引
     const selectedMenuIndex = ref(activeMenu.id + '')
-    console.info('menulist', activeMenu, selectedMenuIndex)
+    // console.info('menulist', activeMenu, selectedMenuIndex)
 
     const toItemRoutePage = (itemRoute: any) => {
       router.push({

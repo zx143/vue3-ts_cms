@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-29 07:31:47
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-10 11:59:04
+ * @LastEditTime: 2021-10-16 17:37:38
  */
 
 import { App } from 'vue'
@@ -41,7 +41,9 @@ import {
   ElBreadcrumbItem,
   ElTable,
   ElTableColumn,
-  ElTag
+  ElTag,
+  ElPagination,
+  ElImage
 } from 'element-plus'
 
 const components = [
@@ -76,7 +78,9 @@ const components = [
   ElBreadcrumbItem,
   ElTable,
   ElTableColumn,
-  ElTag
+  ElTag,
+  ElPagination,
+  ElImage
 ]
 
 export default function (app: App): void {

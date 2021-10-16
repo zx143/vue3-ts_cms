@@ -6,7 +6,7 @@ import { RouteRecordRaw } from 'vue-router'
  * @Author: zgq
  * @Date: 2021-09-02 20:43:59
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-10 22:05:14
+ * @LastEditTime: 2021-10-16 20:07:57
  */
 
 let defaultFirstMenuRoute: any = null
@@ -76,6 +76,24 @@ export function getActiveBreadcrumb(userMenus: any[], currentRoute: string) {
   const breadcrumbs: IBreadcrumb[] = []
   getActiveMenu(userMenus, currentRoute, breadcrumbs)
   return breadcrumbs
+}
+
+export function mapMenusToPermission(userMenus: any[]) {
+  const permissionList: string[] = []
+
+  const _recurseGetPermission = (menus: any[]) => {
+    for (const menu of menus) {
+      if (menu.type === 1 || menu.type === 2) {
+        _recurseGetPermission(menu.children ?? [])
+      } else if (menu.type === 3) {
+        permissionList.push(menu.permission)
+      }
+    }
+  }
+
+  _recurseGetPermission(userMenus)
+
+  return permissionList
 }
 
 export { defaultFirstMenuRoute }

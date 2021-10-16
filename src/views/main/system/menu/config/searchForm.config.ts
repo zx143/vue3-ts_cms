@@ -1,9 +1,7 @@
 /*
  * @Description:
- * @Author: zgq
- * @Date: 2021-09-08 21:41:24
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-16 14:23:34
+ * @Date: 2021-10-16 19:32:28
+ * @LastEditTime: 2021-10-16 19:33:18
  */
 import { IForm } from '@/base_ui/own-form'
 export const searchFormConfig: IForm = {
@@ -11,20 +9,8 @@ export const searchFormConfig: IForm = {
     {
       field: 'name',
       type: 'input',
-      label: '用户名',
-      placeHolder: '请输入用户名'
-    },
-    {
-      field: 'realname',
-      type: 'input',
-      label: '真实姓名',
-      placeHolder: '请输入真实姓名'
-    },
-    {
-      field: 'cellphone',
-      type: 'input',
-      label: '电话号码',
-      placeHolder: '请输入电话号码'
+      label: '菜单名称',
+      placeHolder: '请输入菜单名称'
     },
     {
       field: 'enable',

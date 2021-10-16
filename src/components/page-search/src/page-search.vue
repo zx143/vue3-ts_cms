@@ -1,7 +1,7 @@
 <!--
  * @Description:
  * @Date: 2021-10-08 07:43:00
- * @LastEditTime: 2021-10-08 07:46:07
+ * @LastEditTime: 2021-10-16 17:22:21
 -->
 <template>
   <div class="page-search">
@@ -11,8 +11,8 @@
       </template>
       <template v-slot:footer>
         <div class="footer-btns">
-          <el-button icon="el-icon-refresh-left">重置</el-button>
-          <el-button type="primary" icon="el-icon-search">搜索</el-button>
+          <el-button icon="el-icon-refresh-left" @click="handleReset">重置</el-button>
+          <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
         </div>
       </template>
     </own-form>
@@ -32,16 +32,31 @@ export default defineComponent({
   components: {
     OwnForm
   },
-  setup() {
-    const formData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sports: '',
-      createTime: ''
-    })
+  emits: ['handleSearch', 'handleReset'],
+  setup(props, { emit }) {
+    const formItems = props.searchFormConfig?.formItems ?? []
+    const defaultFormData: Record<string, any> = {}
+    for (const item of formItems) {
+      defaultFormData[item.field] = ''
+    }
+    const formData = ref(defaultFormData)
+    /* 点击重置 */
+    const handleReset = () => {
+      for (const key in defaultFormData) {
+        formData.value[key] = defaultFormData[key]
+      }
+      // formData.value = defaultFormData
+      // console.info('formData', formData.value === defaultFormData, defaultFormData)
+      emit('handleReset', formData)
+    }
 
-    return { formData }
+    /* 点击搜索 */
+    const handleSearch = () => {
+      // console.info('handleSearch', formData)
+      emit('handleSearch', formData.value)
+    }
+
+    return { formData, handleReset, handleSearch }
   }
 })
 </script>

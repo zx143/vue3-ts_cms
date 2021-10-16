@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-08-31 20:30:05
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-10 22:07:28
+ * @LastEditTime: 2021-10-16 20:06:56
 -->
 <template>
   <div class="nav-header">
@@ -25,7 +25,7 @@ import UserInfo from './user-info.vue'
 import { NavBreadcrumb } from '@/base_ui/nav-breadcrumb'
 import { useRoute } from 'vue-router'
 import { useStore } from '@/store'
-import { getActiveBreadcrumb } from '@/utils/map-routers'
+import { getActiveBreadcrumb } from '@/utils/map-menus'
 export default defineComponent({
   emits: ['menuFoldChange'],
   components: {
@@ -46,7 +46,7 @@ export default defineComponent({
       const userMenus = stroe.state.login.userMenus
       return getActiveBreadcrumb(userMenus, currentRoute)
     })
-    console.log('breadcrumbs', breadcrumbs.value)
+    // console.log('breadcrumbs', breadcrumbs.value)
     return {
       isFold,
       breadcrumbs,

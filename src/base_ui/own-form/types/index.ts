@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-09-06 21:46:55
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-07 20:51:23
+ * @LastEditTime: 2021-10-13 06:53:27
  */
 
 type TFormType =
@@ -52,7 +52,7 @@ export interface IFormItem {
 
 export interface IForm {
   formItems: IFormItem[]
-  colLayout: anyObj<number>
-  itemStyle: anyObj<string>
+  colLayout?: anyObj<number>
+  itemStyle?: anyObj<string>
   labelWidth: string
 }

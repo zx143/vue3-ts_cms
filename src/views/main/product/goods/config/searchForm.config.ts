@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-09-08 21:41:24
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-16 14:23:34
+ * @LastEditTime: 2021-10-16 18:04:58
  */
 import { IForm } from '@/base_ui/own-form'
 export const searchFormConfig: IForm = {
@@ -11,30 +11,25 @@ export const searchFormConfig: IForm = {
     {
       field: 'name',
       type: 'input',
-      label: '用户名',
-      placeHolder: '请输入用户名'
+      label: '商品名称',
+      placeHolder: '请输入商品名称'
     },
     {
-      field: 'realname',
+      field: 'address',
       type: 'input',
-      label: '真实姓名',
-      placeHolder: '请输入真实姓名'
+      label: '商品地址',
+      placeHolder: '请输入商品地址'
     },
-    {
-      field: 'cellphone',
-      type: 'input',
-      label: '电话号码',
-      placeHolder: '请输入电话号码'
-    },
+
     {
       field: 'enable',
       type: 'select',
       label: '状态',
       options: [
-        { label: '启用', value: '1' },
-        { label: '禁用', value: '0' }
+        { label: '已上架', value: '1' },
+        { label: '待上架', value: '0' }
       ],
-      placeHolder: '请选择用户状态'
+      placeHolder: '请选择商品状态'
     },
     {
       field: 'createTime',

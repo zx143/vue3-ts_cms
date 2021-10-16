@@ -2,8 +2,8 @@
  * @Description:
  * @Author: zgq
  * @Date: 2021-08-03 21:57:25
- * @LastEditors: zgq
- * @LastEditTime: 2021-09-05 20:37:38
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-10-16 20:16:13
  */
 
 import { Module } from 'vuex'
@@ -13,7 +13,7 @@ import type { IAccount } from '@/service/login/type'
 import { accountLoginRequest, accountUserInfo, getUserMenus } from '@/service/login/login'
 import cacheLocal from '@/utils/cache'
 import router from '@/router'
-import { mapMenuToRoutes } from '@/utils/map-routers'
+import { mapMenusToPermission, mapMenuToRoutes } from '@/utils/map-menus'
 
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -21,7 +21,8 @@ const loginModule: Module<ILoginState, IRootState> = {
     return {
       token: '',
       userInfo: {},
-      userMenus: []
+      userMenus: [],
+      permission: []
     }
   },
 
@@ -39,6 +40,11 @@ const loginModule: Module<ILoginState, IRootState> = {
       const menuRoutes = mapMenuToRoutes(userMenus)
 
       menuRoutes.forEach((x) => router.addRoute('main', x))
+
+      // 获取当前登录用户所拥有的按钮权限并保存
+      const permission = mapMenusToPermission(userMenus)
+      // console.log('permission', permission)
+      state.permission = permission
     }
   },
 
