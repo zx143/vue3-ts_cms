@@ -1,9 +1,9 @@
 /*
  * @Description:
  * @Date: 2021-10-08 20:52:55
- * @LastEditTime: 2021-10-16 19:27:26
+ * @LastEditTime: 2021-10-17 12:15:40
  */
-import { getPageListData } from '@/service/main/system/system'
+import { getPageListData, removePageDataById } from '@/service/main/system/system'
 import { IRootState } from '@/store/types'
 import { Module } from 'vuex'
 import { IPageListParams, ISystemState } from './types'
@@ -62,6 +62,24 @@ const systemModule: Module<ISystemState, IRootState> = {
       const { list, totalCount } = result.data
       commit(`set${firstLetterUpperCase(paylod?.pageName)}Count`, totalCount)
       commit(`set${firstLetterUpperCase(paylod?.pageName)}List`, list)
+    },
+    async removePageDataAction({ dispatch }, paylod: any) {
+      const {
+        item: { id },
+        pageName,
+        pageInfo
+      } = paylod
+      // console.info('paylod====', paylod)
+      const requestUrl = `/${pageName}/${id}`
+      await removePageDataById(requestUrl)
+      // 重新获取页面表格数据
+      dispatch('getPageListAction', {
+        pageName,
+        queryInfo: {
+          offset: (pageInfo.currentPage - 1) * pageInfo.size,
+          size: pageInfo.size
+        }
+      })
     }
   },
   getters: {
