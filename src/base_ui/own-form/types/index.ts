@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-09-06 21:46:55
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-17 12:12:28
+ * @LastEditTime: 2021-10-19 21:24:34
  */
 
 type TFormType =
@@ -48,6 +48,7 @@ export interface IFormItem {
   rules?: any[]
   placeHolder?: string
   otherOptions?: anyObj
+  isHidden?: boolean
 }
 
 export interface IForm {

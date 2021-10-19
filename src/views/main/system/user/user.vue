@@ -1,7 +1,7 @@
 <!--
  * @Description:
  * @Date: 2021-09-01 21:19:07
- * @LastEditTime: 2021-10-19 07:54:32
+ * @LastEditTime: 2021-10-19 21:44:19
 -->
 <template>
   <div class="user">
@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 import PageSearch from '@/components/page-search'
 import PageContentTable from '@/components/page-content'
 import PageModel from '@/components/page-model'
@@ -42,27 +42,30 @@ import { contentTableConfig } from './config/contentTable.config'
 import { pageModelConfig } from './config/pageModel.config'
 
 import { usePageSearch } from '@/hooks/use-page-search'
+import { usePageModel } from '@/hooks/use-page-model'
 
 export default defineComponent({
   name: 'user',
   components: { PageSearch, PageContentTable, PageModel },
   setup() {
     const [pageContentTableRef, handleSearch, handleReset] = usePageSearch()
-
-    const defaultInfo = ref({})
-    const pageModelRef = ref<InstanceType<typeof PageModel>>()
-
-    const newBtnClick = () => {
-      if (pageModelRef.value) {
-        pageModelRef.value.pageDialogVisible = true
-      }
+    // pagemodel 页面事件回调
+    const newBtnCallBack = () => {
+      // 显示密码表单项
+      const passwordItem = pageModelConfig.formConfig.formItems.find((x) => x.field === 'password')
+      passwordItem!.isHidden = false
     }
-    const editBtnClick = (item: any) => {
-      if (pageModelRef.value) {
-        defaultInfo.value = { ...item }
-        pageModelRef.value.pageDialogVisible = true
-      }
+    const editBtnCallBack = () => {
+      // 隐藏
+      const passwordItem = pageModelConfig.formConfig.formItems.find((x) => x.field === 'password')
+      passwordItem!.isHidden = true
     }
+
+    const [pageModelRef, defaultInfo, newBtnClick, editBtnClick] = usePageModel(
+      newBtnCallBack,
+      editBtnCallBack
+    )
+
     return {
       searchFormConfig,
       contentTableConfig,

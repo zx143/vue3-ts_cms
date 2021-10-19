@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2021-10-17 12:04:37
- * @LastEditTime: 2021-10-19 07:30:44
+ * @LastEditTime: 2021-10-20 07:29:54
  */
 import { IPageModelConfig } from '@/components/page-model/types/type'
 export const pageModelConfig: IPageModelConfig = {
@@ -24,13 +24,28 @@ export const pageModelConfig: IPageModelConfig = {
         field: 'password',
         type: 'password',
         label: '密码',
-        placeHolder: '请输入密码'
+        placeHolder: '请输入密码',
+        isHidden: false
       },
       {
         field: 'cellphone',
         type: 'input',
         label: '电话号码',
         placeHolder: '请输入电话号码'
+      },
+      {
+        field: 'departmentId',
+        type: 'select',
+        label: '部门',
+        options: [],
+        placeHolder: '请选择部门'
+      },
+      {
+        field: 'roleId',
+        type: 'select',
+        label: '角色',
+        options: [],
+        placeHolder: '请选择角色'
       }
     ],
     colLayout: {

@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-24 12:16:14
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-07 21:17:06
+ * @LastEditTime: 2021-10-19 21:26:54
  */
 module.exports = {
   root: true,
@@ -26,6 +26,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-explicit-any': 0,
-    '@typescript-eslint/explicit-module-boundary-types': 0
+    '@typescript-eslint/explicit-module-boundary-types': 0,
+    '@typescript-eslint/no-non-null-assertion': 'off'
   }
 }

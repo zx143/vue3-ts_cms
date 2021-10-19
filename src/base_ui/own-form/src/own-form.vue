@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-09-06 21:37:04
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-08 07:30:17
+ * @LastEditTime: 2021-10-19 21:35:36
 -->
 <template>
   <div class="own-form">
@@ -14,6 +14,7 @@
       <el-row>
         <el-col v-bind="colLayout" v-for="item in formItems" :key="item.label">
           <el-form-item
+            v-if="!item.isHidden"
             :label="item.label"
             :label-width="labelWidth"
             :rules="item.rules"
