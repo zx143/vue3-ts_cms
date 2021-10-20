@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2021-10-08 21:27:03
- * @LastEditTime: 2021-10-17 10:36:21
+ * @LastEditTime: 2021-10-20 21:23:53
  */
 import gqRequest from '@/service'
 import { IDataType } from '@/service/types'
@@ -17,5 +17,19 @@ export function getPageListData(url: string, queryInfo: ITableParamsConfig) {
 export function removePageDataById(url: string) {
   return gqRequest.delete<IDataType>({
     url
+  })
+}
+
+export function editPageDataById(url: string, data: any) {
+  return gqRequest.patch<IDataType>({
+    url,
+    data
+  })
+}
+
+export function createPageData(url: string, data: any) {
+  return gqRequest.post<IDataType>({
+    url,
+    data
   })
 }

@@ -1,7 +1,7 @@
 <!--
  * @Description:
  * @Date: 2021-10-17 11:56:52
- * @LastEditTime: 2021-10-19 07:53:47
+ * @LastEditTime: 2021-10-20 21:43:14
 -->
 <template>
   <div class="page-model">
@@ -26,6 +26,7 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
 import OwnForm from '@/base_ui/own-form'
+import { useStore } from '@/store'
 export default defineComponent({
   props: {
     pageModelConfig: {
@@ -35,6 +36,10 @@ export default defineComponent({
     defaultInfo: {
       type: Object,
       default: () => ({})
+    },
+    pageName: {
+      type: String,
+      required: true
     }
   },
   components: { OwnForm },
@@ -52,8 +57,24 @@ export default defineComponent({
         }
       }
     )
+    /* 点击确定弹窗 */
+    const store = useStore()
     const confirm = () => {
       pageDialogVisible.value = false
+      if (Object.keys(props.defaultInfo).length <= 0) {
+        // 新增
+        store.dispatch('system/createPageDataAction', {
+          pageName: props.pageName,
+          data: { ...formData.value }
+        })
+      } else {
+        // 编辑
+        store.dispatch('system/editPageDataAction', {
+          pageName: props.pageName,
+          data: { ...formData.value },
+          id: props.defaultInfo.id
+        })
+      }
     }
     return {
       pageDialogVisible,

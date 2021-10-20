@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-24 17:11:36
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-20 07:44:17
+ * @LastEditTime: 2021-10-20 20:35:33
  */
 import { createStore, Store, useStore as useVuexStore } from 'vuex'
 import type { IRootState, IRootUseStoreType } from './types'
@@ -57,6 +57,7 @@ const store = createStore<IRootState>({
 
 export function loadSetUpCacheInit() {
   store.dispatch('login/loadCacheInit')
+  store.dispatch('getInitialDataAction')
 }
 
 // vuex类型函数

@@ -1,12 +1,17 @@
 /*
  * @Description:
  * @Date: 2021-10-08 20:52:55
- * @LastEditTime: 2021-10-17 12:15:40
+ * @LastEditTime: 2021-10-20 21:34:13
  */
-import { getPageListData, removePageDataById } from '@/service/main/system/system'
+import {
+  getPageListData,
+  removePageDataById,
+  editPageDataById,
+  createPageData
+} from '@/service/main/system/system'
 import { IRootState } from '@/store/types'
 import { Module } from 'vuex'
-import { IPageListParams, ISystemState } from './types'
+import { IPageListParams, ISystemState, ITableParamsConfig } from './types'
 
 const firstLetterUpperCase: (letter: string) => string = (letter: string) => {
   return letter.substr(0, 1).toUpperCase() + letter.substr(1)
@@ -16,6 +21,10 @@ const systemModule: Module<ISystemState, IRootState> = {
   namespaced: true,
   state() {
     return {
+      pageParams: {
+        offset: 0,
+        size: 10
+      },
       usersList: [],
       usersCount: 0,
       roleList: [],
@@ -27,6 +36,9 @@ const systemModule: Module<ISystemState, IRootState> = {
     }
   },
   mutations: {
+    setPageParams(state, params: ITableParamsConfig) {
+      state.pageParams = params
+    },
     setUsersList(state, list: any[]) {
       state.usersList = list
     },
@@ -79,6 +91,26 @@ const systemModule: Module<ISystemState, IRootState> = {
           offset: (pageInfo.currentPage - 1) * pageInfo.size,
           size: pageInfo.size
         }
+      })
+    },
+    async editPageDataAction({ dispatch, state }, paylod: any) {
+      const { pageName, data, id } = paylod
+
+      await editPageDataById(`/${pageName}/${id}`, data)
+      console.info('state.pageParAms', state.pageParams)
+      dispatch('getPageListAction', {
+        pageName,
+        queryInfo: state.pageParams
+      })
+    },
+
+    async createPageDataAction({ dispatch, state }, paylod: any) {
+      const { pageName, data } = paylod
+      await createPageData(`/${pageName}`, data)
+      console.info('state.pageParAms', state.pageParams)
+      dispatch('getPageListAction', {
+        pageName,
+        queryInfo: state.pageParams
       })
     }
   },

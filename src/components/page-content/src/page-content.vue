@@ -1,7 +1,7 @@
 <!--
  * @Description:
  * @Date: 2021-10-10 20:35:43
- * @LastEditTime: 2021-10-19 07:25:32
+ * @LastEditTime: 2021-10-20 21:46:06
 -->
 <template>
   <div class="page-content">
@@ -98,12 +98,17 @@ export default defineComponent({
     watch(pageInfo, () => getPageData())
     // 发起网络请求获取页面数据
     const getPageData = (searchInfo: any = {}) => {
+      const params = {
+        offset: (pageInfo.value.currentPage - 1) * pageInfo.value.size,
+        size: pageInfo.value.size
+      }
+      // 页码改变 重新变更到vuex
+      store.commit('system/setPageParams', params)
       if (!isQuery) return false
       const pageListParams: IPageListParams = {
         pageName: props.pageName,
         queryInfo: {
-          offset: (pageInfo.value.currentPage - 1) * pageInfo.value.size,
-          size: pageInfo.value.size,
+          ...params,
           ...searchInfo
         }
       }

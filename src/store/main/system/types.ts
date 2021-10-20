@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2021-10-08 20:53:06
- * @LastEditTime: 2021-10-16 19:26:17
+ * @LastEditTime: 2021-10-20 21:26:34
  */
 export interface ISystemState {
   usersList: any[]
@@ -12,6 +12,7 @@ export interface ISystemState {
   goodsCount: number
   menuList: any[]
   menuCount: number
+  pageParams: ITableParamsConfig
 }
 
 export interface ITableParamsConfig {
