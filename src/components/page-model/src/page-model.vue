@@ -1,7 +1,7 @@
 <!--
  * @Description:
  * @Date: 2021-10-17 11:56:52
- * @LastEditTime: 2021-10-20 21:43:14
+ * @LastEditTime: 2021-10-22 22:10:21
 -->
 <template>
   <div class="page-model">
@@ -13,6 +13,7 @@
       destroy-on-close
     >
       <own-form v-bind="pageModelConfig.formConfig" v-model="formData"></own-form>
+      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="pageDialogVisible = false">取消</el-button>
@@ -40,6 +41,10 @@ export default defineComponent({
     pageName: {
       type: String,
       required: true
+    },
+    orderInfo: {
+      type: Object,
+      default: () => ({})
     }
   },
   components: { OwnForm },
@@ -65,13 +70,13 @@ export default defineComponent({
         // 新增
         store.dispatch('system/createPageDataAction', {
           pageName: props.pageName,
-          data: { ...formData.value }
+          data: { ...formData.value, ...props.orderInfo }
         })
       } else {
         // 编辑
         store.dispatch('system/editPageDataAction', {
           pageName: props.pageName,
-          data: { ...formData.value },
+          data: { ...formData.value, ...props.orderInfo },
           id: props.defaultInfo.id
         })
       }

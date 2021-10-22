@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-08-03 21:57:25
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-16 20:16:13
+ * @LastEditTime: 2021-10-21 07:44:40
  */
 
 import { Module } from 'vuex'
@@ -49,7 +49,7 @@ const loginModule: Module<ILoginState, IRootState> = {
   },
 
   actions: {
-    async accountLogin({ commit }, payLoad: IAccount) {
+    async accountLogin({ commit, dispatch }, payLoad: IAccount) {
       // 实现登录逻辑
       console.log('accountLogin', payLoad)
       const loginResult = await accountLoginRequest(payLoad)
@@ -57,6 +57,9 @@ const loginModule: Module<ILoginState, IRootState> = {
       commit('setToken', token)
       cacheLocal.setCache('token', token)
       console.log(id, token)
+
+      // 获取初始化数据 => 全部部门/角色数据
+      dispatch('getInitialDataAction', null, { root: true })
 
       // 获取用户信息
       const resultUserInfo = await accountUserInfo(id)
@@ -74,9 +77,10 @@ const loginModule: Module<ILoginState, IRootState> = {
       // 路由跳转
       router.push('/main')
     },
-    loadCacheInit({ commit }) {
+    loadCacheInit({ commit, dispatch }) {
       const token = cacheLocal.getCache('token')
       token && commit('setToken', token)
+      dispatch('getInitialDataAction', null, { root: true })
       const userInfo = cacheLocal.getCache('userInfo')
       userInfo && commit('setUserInfo', userInfo)
       const userMenus = cacheLocal.getCache('userMenus')

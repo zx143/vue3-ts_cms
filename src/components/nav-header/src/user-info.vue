@@ -2,8 +2,8 @@
  * @Description:
  * @Author: zgq
  * @Date: 2021-09-05 20:55:06
- * @LastEditors: zgq
- * @LastEditTime: 2021-09-05 21:26:33
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-10-21 07:41:46
 -->
 <template>
   <div class="user-info">
@@ -18,7 +18,7 @@
       </span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item>退出登录</el-dropdown-item>
+          <el-dropdown-item @click="handleExitClick">退出登录</el-dropdown-item>
           <el-dropdown-item divided>用户信息</el-dropdown-item>
           <el-dropdown-item>系统设置</el-dropdown-item>
         </el-dropdown-menu>
@@ -30,13 +30,22 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useStore } from '@/store'
+import { useRouter } from 'vue-router'
+import LocalCache from '@/utils/cache'
 
 export default defineComponent({
   setup() {
     const store = useStore()
+    const router = useRouter()
     const name = computed(() => store.state.login.userInfo.name)
+    /* 退出登录 */
+    const handleExitClick = () => {
+      LocalCache.delCache('token')
+      router.push('/main')
+    }
     return {
-      name
+      name,
+      handleExitClick
     }
   }
 })

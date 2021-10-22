@@ -1,13 +1,13 @@
 /*
  * @Description:
  * @Date: 2021-10-08 21:27:03
- * @LastEditTime: 2021-10-20 21:23:53
+ * @LastEditTime: 2021-10-22 22:41:10
  */
 import gqRequest from '@/service'
 import { IDataType } from '@/service/types'
-import { IPageListData, ITableParamsConfig } from '@/store/main/system/types'
+import { IPageListData } from '@/store/main/system/types'
 
-export function getPageListData(url: string, queryInfo: ITableParamsConfig) {
+export function getPageListData(url: string, queryInfo: any) {
   return gqRequest.post<IDataType<IPageListData>>({
     url,
     data: queryInfo

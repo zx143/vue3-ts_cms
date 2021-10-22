@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-24 17:11:36
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-20 20:35:33
+ * @LastEditTime: 2021-10-22 22:40:43
  */
 import { createStore, Store, useStore as useVuexStore } from 'vuex'
 import type { IRootState, IRootUseStoreType } from './types'
@@ -18,7 +18,8 @@ const store = createStore<IRootState>({
       age: 20,
       height: '180',
       departmentList: [],
-      roleList: []
+      roleList: [],
+      entireMenu: []
     }
   },
   mutations: {
@@ -30,6 +31,9 @@ const store = createStore<IRootState>({
     },
     setRoleListChange(state, list) {
       state.roleList = list
+    },
+    setEntireMenuChange(state, list) {
+      state.entireMenu = list
     }
   },
 
@@ -46,6 +50,10 @@ const store = createStore<IRootState>({
       const roleResult = await getPageListData('/role/list', pageDataParams)
       const { list: roleList } = roleResult.data
       commit('setRoleListChange', roleList)
+
+      const menuResult = await getPageListData('menu/list', {})
+      const { list: menuList } = menuResult.data
+      commit('setEntireMenuChange', menuList)
     }
   },
   getters: {},
@@ -57,7 +65,8 @@ const store = createStore<IRootState>({
 
 export function loadSetUpCacheInit() {
   store.dispatch('login/loadCacheInit')
-  store.dispatch('getInitialDataAction')
+  // 防止未获取到token进行请求, 需在登录完成后进行请求初始化
+  // store.dispatch('getInitialDataAction')
 }
 
 // vuex类型函数

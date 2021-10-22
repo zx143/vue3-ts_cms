@@ -3,7 +3,7 @@
  * @Author: zgq
  * @Date: 2021-07-29 07:31:47
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-10-17 12:18:23
+ * @LastEditTime: 2021-10-21 21:40:54
  */
 
 import { App } from 'vue'
@@ -44,7 +44,8 @@ import {
   ElTag,
   ElPagination,
   ElImage,
-  ElDialog
+  ElDialog,
+  ElTree
 } from 'element-plus'
 
 const components = [
@@ -82,7 +83,8 @@ const components = [
   ElTag,
   ElPagination,
   ElImage,
-  ElDialog
+  ElDialog,
+  ElTree
 ]
 
 export default function (app: App): void {
