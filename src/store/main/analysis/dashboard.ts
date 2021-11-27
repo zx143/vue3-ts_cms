@@ -6,9 +6,9 @@ import {
 } from '@/service/main/analysis/dashboard'
 import { IRootState } from '@/store/types'
 import { Module } from 'vuex'
-import { IDashboardStatus } from './type'
+import { IDashboardState } from './types'
 
-const dashboardModule: Module<IDashboardStatus, IRootState> = {
+const dashboardModule: Module<IDashboardState, IRootState> = {
   namespaced: true,
   state() {
     return {
@@ -27,11 +27,13 @@ const dashboardModule: Module<IDashboardStatus, IRootState> = {
     },
     setCategoryGoodsFavor(state, list: any[]) {
       state.categoryGoodsFavor = list
+    },
+    setAddressGoodsSale(state, list: any[]) {
+      state.addressGoodsSale = list
     }
   },
   actions: {
     async getDashboardDataAction({ commit }) {
-      console.log(1)
       const categoryGoodsCountResult = await getCategoryGoodsCount()
       const categoryGoodsCountList = categoryGoodsCountResult.data
       if (categoryGoodsCountList) {
@@ -55,6 +57,7 @@ const dashboardModule: Module<IDashboardStatus, IRootState> = {
       if (addressGoodsSaleList) {
         commit('setAddressGoodsSale', addressGoodsSaleList)
       }
+      // console.log(1, addressGoodsSaleList)
     }
   }
 }

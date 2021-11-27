@@ -15,3 +15,4 @@ declare module '*.vue' {
 declare let $store: any
 
 declare const BASE_URL: string
+declare module '*.json'
